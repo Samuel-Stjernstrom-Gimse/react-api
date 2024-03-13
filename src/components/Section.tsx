@@ -3,6 +3,7 @@ import { Card } from './card.tsx'
 
 type Props = {
 	search: string
+	house: string
 }
 
 export type Character = {
@@ -53,9 +54,19 @@ export const Section = (props: Props) => {
 		character.name.toLowerCase().includes(props.search.toLowerCase())
 	)
 
+	const filteredAndPossiblySortedArray: Character[] = filteredCharacters.filter(
+		(character: Character) => props.house === 'All' || character.house === props.house
+	)
+
 	return (
-		<div>
-			{filteredCharacters.map((character: Character) => {
+		<div
+			style={{
+				display: 'grid',
+				gridTemplateColumns: 'repeat(3, 1fr)',
+				gap: '10px'
+			}}
+		>
+			{filteredAndPossiblySortedArray.map((character: Character) => {
 				return (
 					<Card
 						name={character.name}

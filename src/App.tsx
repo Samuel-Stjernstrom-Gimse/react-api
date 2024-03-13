@@ -4,16 +4,27 @@ import React, { useState } from 'react'
 
 const App = () => {
 	const [search, setSearch] = useState('')
+	const [house, setHouse] = useState('All')
 
 	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(event.target.value)
 	}
 
+	const handleHouse = (event: React.ChangeEvent<HTMLSelectElement>) => {
+		setHouse(event.target.value)
+	}
+
 	return (
 		<>
-			<h1>hei</h1>
+			<select onChange={handleHouse}>
+				<option value={'All'}>All houses</option>
+				<option value={'Gryffindor'}>Gryffindor</option>
+				<option value={'Slytherin'}>Slytherin</option>
+				<option value={'Hufflepuff'}>Hufflepuff</option>
+				<option value={'Ravenclaw'}>Ravenclaw</option>
+			</select>
 			<input type={'text'} onChange={handleSearch} />
-			<Section search={search} />
+			<Section search={search} house={house}></Section>
 		</>
 	)
 }
